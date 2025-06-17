@@ -89,10 +89,27 @@
     </div>
   </div>
 
-  <script>
-    function navigateTo(page) {
-      window.location.href = page;
-    }
-  </script>
+ <div class="menu" id="menu"></div>
+
+<script>
+  async function fetchMenuData() {
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF96nw41yRzK_PpW157SRj-Gg221xdzmppFtPWB9bITzJjAPvcple8x8sSTO0UL8a5InJXeshg-7Mw/pub?output=csv&t=' + new Date().getTime();
+    const res = await fetch(url);
+    const text = await res.text();
+    const rows = text.trim().split('\n').slice(1);
+    const menu = document.getElementById('menu');
+    menu.innerHTML = '';
+    rows.forEach(row => {
+      const [kategori, isim, aciklama, fiyat] = row.split(',');
+      menu.innerHTML += `
+        <div class="card">
+          <h2>${isim.trim()} <span class="price">${fiyat.trim()}₺</span></h2>
+          <p>${aciklama.trim()}</p>
+        </div>
+      `;
+    });
+  }
+  fetchMenuData();
+</script>
 </body>
 </html>
