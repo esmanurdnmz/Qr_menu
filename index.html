@@ -89,27 +89,42 @@
     </div>
   </div>
 
- <div class="menu" id="menu"></div>
+ <div class="menu" id="dynamic-menu"></div>
 
 <script>
-  async function fetchMenuData() {
-    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF96nw41yRzK_PpW157SRj-Gg221xdzmppFtPWB9bITzJjAPvcple8x8sSTO0UL8a5InJXeshg-7Mw/pub?output=csv&t=' + new Date().getTime();
-    const res = await fetch(url);
-    const text = await res.text();
-    const rows = text.trim().split('\n').slice(1);
-    const menu = document.getElementById('menu');
-    menu.innerHTML = '';
-    rows.forEach(row => {
-      const [kategori, isim, aciklama, fiyat] = row.split(',');
-      menu.innerHTML += `
-        <div class="card">
-          <h2>${isim.trim()} <span class="price">${fiyat.trim()}₺</span></h2>
-          <p>${aciklama.trim()}</p>
-        </div>
-      `;
-    });
-  }
-  fetchMenuData();
+async function updateStaticCards() {
+  const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF96nw41yRzK_PpW157SRj-Gg221xdzmppFtPWB9bITzJjAPvcple8x8sSTO0UL8a5InJXeshg-7Mw/pub?output=csv&t=' + new Date().getTime();
+  const res = await fetch(url);
+  const text = await res.text();
+  const rows = text.trim().split('\n').slice(1);
+
+  const menuData = {};
+  rows.forEach(row => {
+    const [kategori, isim, aciklama, fiyat] = row.split(',');
+    menuData[isim.trim()] = { aciklama: aciklama.trim(), fiyat: fiyat.trim() };
+  });
+
+  document.querySelectorAll('.card.tatli').forEach(card => {
+    const h2 = card.querySelector('h2');
+    if (!h2) return;
+
+    // h2 içinden fiyat ve isim ayrımı (örn: "Klasik Waffle 195₺")
+    // Fiyat kısmını span.price içeriyor zaten ama önlem için:
+    const isim = h2.childNodes[0].textContent.trim(); // sadece metin kısmı (span dışı)
+
+    if (menuData[isim]) {
+      // Fiyat güncelle
+      const priceSpan = h2.querySelector('.price');
+      if (priceSpan) priceSpan.textContent = menuData[isim].fiyat + '₺';
+
+      // Açıklama güncelle
+      const p = card.querySelector('p');
+      if (p) p.textContent = menuData[isim].aciklama;
+    }
+  });
+}
+
+updateStaticCards();
 </script>
 </body>
 </html>
