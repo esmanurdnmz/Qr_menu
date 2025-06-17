@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QR Menü</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #fff8e6; padding: 2rem; max-width: 800px; margin: auto; }
+  .card { background: white; border-left: 5px solid #ffd700; border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+  .card h2 { color: #7a3200; margin: 0 0 0.3rem 0; }
+  .price { background-color: #ffe8af; padding: 0.2rem 0.7rem; border-radius: 10px; font-weight: bold; }
+  .desc { color: #444; margin: 0.3rem 0 0 0; }
+</style>
+</head>
+<body>
+
+<h1>Menü</h1>
+<div id="menu"></div>
+
+<script>
+  const csvUrl = 'https://raw.githubusercontent.com/esmanurdnmz/qr-menu/refs/heads/main/waffle%20cafe%20-%20Sayfa1.csv'; 
+
+  fetch(csvUrl)
+    .then(res => res.text())
+    .then(data => {
+      const lines = data.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim());
+      const items = lines.slice(1).map(line => {
+        const values = line.split(',');
+        let obj = {};
+        headers.forEach((h, i) => obj[h] = values[i]);
+        return obj;
+      });
+
+      const menuDiv = document.getElementById('menu');
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h2>${item['Ürün Adı']}</h2>
+          <p class="desc">${item['Açıklama']}</p>
+          <span class="price">${item['Fiyat']} TL</span>
+        `;
+        menuDiv.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error('CSV okunamadı:', err);
+      document.getElementById('menu').textContent = 'Menü yüklenirken hata oluştu.';
+    });
+</script>
+
+</body>
+</html>

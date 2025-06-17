@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Waffle Cafe Menü</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="waffleresim.png" alt="Sevimli Waffle" width="90" />
+  
+      <h1>Waffle Cafe</h1>
+        </div>
+
+    <div class="filters">
+      <button onclick="navigateTo('index.html')">Waffle</button>
+      <button onclick="navigateTo('bubble.html')">Bubble Tea</button>
+      <button onclick="navigateTo('sıcak.html')">Sıcak İçecekler</button>
+      <button onclick="navigateTo('soguk.html')">Soğuk İçecekler</button>
+      <button onclick="navigateTo('kahve.html')">Kahveler</button>
+    </div>
+
+
+
+      <div class="card bubble">
+        <h2>Ice Latte Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+      <div class="card bubble">
+        <h2>Frabbe Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+      <div class="card bubble">
+        <h2>Cool Lime Bubble Tea<span class="price">125₺</span></h2>
+      </div><br>
+
+       <div class="card bubble">
+        <h2>Mango Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+       <div class="card bubble">
+        <h2>Karadut Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+       <div class="card bubble">
+        <h2>Limonata Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+       <div class="card bubble">
+        <h2>Yaban Mersinli Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+      <div class="card bubble">
+        <h2>Milkshake Bubble Tea <span class="price">125₺</span></h2>
+        <p>Bitter çikolata, çilek, muz, antep fıstığı, yer fıstığı, fındık, bitter sos</p>
+      </div><br>
+
+      <div class="card bubble">
+        <h2>Yeşil Elmalı Bubble Tea <span class="price">125₺</span></h2>
+      </div><br>
+
+    </div>
+  </div>
+
+    <script>
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>
