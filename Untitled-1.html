@@ -37,9 +37,7 @@
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-          <h2>${item['Ürün Adı']}</h2>
-          <p class="desc">${item['Açıklama']}</p>
-          <span class="price">${item['Fiyat']} TL</span>
+          <h2>${item['Ürün Adı']} <span class="price">${item['Fiyat']} TL</span></h2>
         `;
         menuDiv.appendChild(card);
       });
@@ -49,6 +47,7 @@
       document.getElementById('menu').textContent = 'Menü yüklenirken hata oluştu.';
     });
 </script>
+
 
 </body>
 </html>
