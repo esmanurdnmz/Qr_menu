@@ -1,5 +1,5 @@
-const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/GOOGLE_SHEET_ID/pub?output=csv'; 
-// Buraya kendi CSV linkini yapıştır
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/10HDpqjKDTLIaliEUEoxpOEb56L-39_8QaDjCHUfpe58/gviz/tq?tqx=out:csv'; 
+
 
 async function fetchMenuData() {
   try {
