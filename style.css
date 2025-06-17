@@ -1,3 +1,4 @@
+
 body {
   font-family: "Segoe UI", sans-serif;
   background-color: #fff8e6;
@@ -87,3 +88,31 @@ body {
   border-radius: 10px;
   font-weight: bold;
 }
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+  font-weight: inherit !important;
+  pointer-events: none;
+}
+
+a:visited,
+a:link,
+a:hover,
+a:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.filters button a {
+  all: unset !important;
+  display: inline-block;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  a {
+    color: #000 !important;
+  }
+}
+
