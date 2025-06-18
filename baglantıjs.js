@@ -1,4 +1,4 @@
-const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/10HDpqjKDTLIaliEUEoxpOEb56L-39_8QaDjCHUfpe58/gviz/tq?tqx=out:csv'; 
+const sheetCsvUrl = 'https://docs.google.com/spreadsheets/d/10HDpqjKDTLIaliEUEoxpOEb56L-39_8QaDjCHUfpe58/edit?gid=0#gid=0'; 
 
 
 async function fetchMenuData() {
