@@ -98,10 +98,11 @@
   </div>
 
     <script>
-    function navigateTo(page) {
-      window.location.href = page;
-    }
-      async function updateStaticCards() {
+     function navigateTo(page) {
+    window.location.href = page;
+  }
+
+  async function updateStaticCards() {
     const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF96nw41yRzK_PpW157SRj-Gg221xdzmppFtPWB9bITzJjAPvcple8x8sSTO0UL8a5InJXeshg-7Mw/pub?output=csv&t=' + new Date().getTime();
     const res = await fetch(url);
     const text = await res.text();
