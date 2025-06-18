@@ -68,38 +68,8 @@
     function navigateTo(page) {
       window.location.href = page;
     }
-      async function updateStaticCards() {
-    const url = 'https://docs.google.com/spreadsheets/d/10HDpqjKDTLIaliEUEoxpOEb56L-39_8QaDjCHUfpe58/edit?usp=sharing' + new Date().getTime();
-    const res = await fetch(url);
-    const text = await res.text();
-    const rows = text.trim().split('\n').slice(1);
-
-    const menuData = {};
-    rows.forEach(row => {
-      // Satırları virgülle böl, açıklamada da virgül varsa patlayabilir ama burada örnek
-      const [kategori, isim, aciklama, fiyat] = row.split(',');
-      if(!isim) return;
-      menuData[isim.trim()] = { aciklama: aciklama ? aciklama.trim() : '', fiyat: fiyat ? fiyat.trim() : '' };
-    });
-
-    document.querySelectorAll('.card.tatli').forEach(card => {
-      const h2 = card.querySelector('h2');
-      if (!h2) return;
-
-      // Ürün adını h2'nin ilk text node'undan al (span.price dışı)
-      const isim = h2.childNodes[0].textContent.trim();
-
-      if (menuData[isim]) {
-        // Fiyat güncelle
-        const priceSpan = h2.querySelector('.price');
-        if (priceSpan && menuData[isim].fiyat) priceSpan.textContent = menuData[isim].fiyat + '₺';
-
-        // Açıklama güncelle
-        const p = card.querySelector('p');
-        if (p && menuData[isim].aciklama) p.textContent = menuData[isim].aciklama;
-      }
-    });
-  }
+     
+  
 
   updateStaticCards();
   </script>
